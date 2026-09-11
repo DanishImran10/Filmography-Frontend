@@ -5,6 +5,12 @@ function SignUpPage() {
         <h2 className="text-white text-xl mb-6">Sign Up</h2>
 
         <input
+          type="name"
+          placeholder="Name"
+          className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <input
           type="email"
           placeholder="Email"
           className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -13,12 +19,6 @@ function SignUpPage() {
         <input
           type="password"
           placeholder="Password"
-          className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-
-        <input
-          type="password"
-          placeholder="Confirm Password"
           className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 

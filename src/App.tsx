@@ -5,8 +5,31 @@ import MovieDetailsPage from "./Components/MovieDetailsPage";
 import WatchlistPage from "./Components/WatchlistPage";
 import LoginPage from "./Components/LoginPage";
 import SignUpPage from "./Components/SignupPage";
+import { useEffect, useContext } from "react";
+import getAuth from "./utils/getAuth.ts";
+import { AuthProvider } from "./Components/AuthProvider";
+import { AuthContext } from "./Components/AuthContext";
 
 function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+}
+
+function AppContent() {
+  const { setUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    async function loadCurrentUser() {
+      const userId = await getAuth();
+      setUser(userId);
+    }
+
+    loadCurrentUser();
+  }, [setUser]);
+
   return (
     <div className="bg-gray-900 text-white min-h-screen">
       <Routes>

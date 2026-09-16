@@ -1,4 +1,54 @@
+import { useState, useContext } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router";
+import getAuth from "../utils/getAuth";
+import { AuthContext } from "./AuthContext";
+
+type SignUp = {
+  name: string,
+  email: string,
+  password: string
+};
+
 function SignUpPage() {
+  const [userCredentials, setUserCredentials] = useState<SignUp>({
+    name: "",
+    email: "",
+    password: ""
+  });
+
+  const [errorResponse, setErrorResponse] = useState("");
+
+  const navigate = useNavigate();
+
+  const { setUser } = useContext(AuthContext);
+
+  async function handleSubmission(event: React.UIEvent) {
+    event.preventDefault();
+
+    if (userCredentials.name === "" || userCredentials.email === "" || 
+      userCredentials.password === "")
+    {
+      setErrorResponse("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      await axios.post("http://localhost:5000/api/auth/register", userCredentials, {
+        withCredentials: true
+      });
+    }
+    catch (error) {
+      if (axios.isAxiosError(error))
+        setErrorResponse(error.response?.data.error);
+      return;
+    }
+
+    const userId = await getAuth();
+    setUser(userId);
+    navigate("/");
+  }
+
   return (
     <div className="flex items-center justify-center h-screen">
       <form className="bg-gray-800 p-6 rounded w-80">
@@ -8,25 +58,60 @@ function SignUpPage() {
           type="name"
           placeholder="Name"
           className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={userCredentials.name}
+          onChange={(e) => {
+            setUserCredentials((prev) => {
+              return {
+                ...prev,
+                name: e.target.value
+              }
+            });
+            }
+          }
         />
 
         <input
           type="email"
           placeholder="Email"
           className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={userCredentials.email}
+          onChange={(e) => {
+            setUserCredentials((prev) => {
+              return {
+                ...prev,
+                email: e.target.value
+              }
+            });
+            }
+          }
         />
 
         <input
           type="password"
           placeholder="Password"
           className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={userCredentials.password}
+          onChange={(e) => {
+            setUserCredentials((prev) => {
+              return {
+                ...prev,
+                password: e.target.value
+              }
+            });
+            }
+          }
         />
 
-        <button className="bg-green-500 w-full mt-2 py-2 rounded text-white hover:bg-green-600 cursor-pointer">
+        <button className="bg-green-500 w-full mt-2 py-2 rounded text-white hover:bg-green-600 cursor-pointer"
+          onClick={(e) => handleSubmission(e)}>
           Create Account
         </button>
 
-        <p className="text-sm text-gray-400 mt-4 text-center">
+        <p className="text-sm text-red-400 mt-4 text-center">
+            {errorResponse !== "" && errorResponse}
+        </p>
+
+        <p className="text-sm text-gray-400 mt-2 text-center">
             Already have an account?
             <a href="/login" className="text-blue-400 ml-1 hover:underline">Login</a>
         </p>

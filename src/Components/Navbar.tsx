@@ -37,7 +37,7 @@ function Navbar() {
 
         {user && (
           <Link
-            to="/watchlist/:userId"
+            to={`/watchlist/${user}`}
             className="hover:text-gray-300 cursor-pointer"
           >
             Watchlist

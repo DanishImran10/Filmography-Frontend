@@ -19,7 +19,7 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  const { user, setUser } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
 
   async function handleSubmission(event: React.UIEvent) {
     event.preventDefault();
@@ -43,7 +43,6 @@ function LoginPage() {
 
     const userId = await getAuth();
     setUser(userId);
-    console.log(user);
     navigate("/");
   }
 

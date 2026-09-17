@@ -16,7 +16,8 @@ export type Movie = {
   tomatoScore: number,
   plot: string,
   genre: string,
-  posterUrl: string
+  posterUrl: string,
+  isInWatchlist: boolean
 }
 
 function MoviesPage() {
@@ -29,13 +30,15 @@ function MoviesPage() {
 
   useEffect(() => {
     async function fetchMovies() {
-      const response = await axios.get(`http://localhost:5000/api/movies?page=${page}&limit=${limit}`);
+      const response = await axios.get(`http://localhost:5000/api/movies?page=${page}&limit=${limit}`, {
+        withCredentials: true
+      });
       setTotalPages(response.data.totalPages);
       setMovies(response.data.movies);
     }
 
     fetchMovies();
-  }, [page]);
+  }, [page, limit]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -70,7 +73,7 @@ function MoviesPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
           {movies.length === 0 ? <p className="text-white">Loading...</p> : 
             movies.map((movie) => <MovieTile key={movie.id} movie={movie} />)}
         </div>

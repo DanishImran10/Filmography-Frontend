@@ -26,7 +26,7 @@ function HomePage() {
       <div className="p-6">
         <h2 className="text-2xl mb-4">Trending Movies</h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
           {trending && trending.map((poster) => <MoviePoster key={poster.id} poster={poster} />)}
         </div>
       </div>

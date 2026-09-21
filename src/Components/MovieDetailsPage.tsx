@@ -27,50 +27,48 @@ function MovieDetailsPage() {
     getMovieDetails();
   }, [movieId]);
 
-  
-  if (!movie)
-    return (
-      <p>Loading...</p>
-  );
-
   return (
     <>
       <Navbar />
 
-      <div className="px-25">
-        <div className="p-6 flex justify-between mt-12">
-          <div className="w-180 space-y-2">
-            <h1 className="text-3xl font-bold">{movie.title}</h1>
-            <p className="text-gray-400">{`${movie.year} • ${movie.runtime}`}</p>
-            <p className="text-gray-400">{`IMDb: ${movie.imdbRating} | Rotten Tomatoes: ${movie.tomatoScore}`}</p>
-            <p className="text-gray-400">{`Genre: ${movie.genre}`}</p>
+      {movie ? (
+        <div className="px-25">
+          <div className="p-6 flex justify-between mt-12">
+            <div className="w-180 space-y-2">
+              <h1 className="text-3xl font-bold">{movie.title}</h1>
+              <p className="text-gray-400">{`${movie.year} • ${movie.runtime}`}</p>
+              <p className="text-gray-400">{`IMDb: ${movie.imdbRating} | Rotten Tomatoes: ${movie.tomatoScore}`}</p>
+              <p className="text-gray-400">{`Genre: ${movie.genre}`}</p>
 
-            <p className="mt-4 text-gray-300">
-              {movie.plot}
-            </p>
+              <p className="mt-4 text-gray-300 w-150">
+                {movie.plot}
+              </p>
 
-            <p className="text-gray-400 mt-2">{`Director: ${movie.director}`}</p>
-            <p className="text-gray-400">{`Writer: ${movie.writer}`}</p>
-            <p className="text-gray-400">{`Cast: ${movie.cast}`}</p>
+              <p className="text-gray-400 mt-2">{`Director: ${movie.director}`}</p>
+              <p className="text-gray-400">{`Writer: ${movie.writer}`}</p>
+              <p className="text-gray-400">{`Cast: ${movie.cast}`}</p>
 
-            {
-              isInWatchlist ? 
-                <button className="bg-red-500 px-5 py-3 mt-5 rounded hover:bg-red-600 cursor-pointer"
-                  onClick={() => removeMovie()}>
-                  Remove from Watchlist
-                </button> :
-                <button className="bg-blue-500 px-5 py-3 mt-5 rounded hover:bg-blue-600 cursor-pointer"
-                  onClick={() => addMovie()}>
-                  Add to Watchlist
-                </button>
-            }
+              {
+                isInWatchlist ? 
+                  <button className="bg-red-500 px-5 py-3 mt-5 rounded hover:bg-red-600 cursor-pointer"
+                    onClick={() => removeMovie()}>
+                    Remove from Watchlist
+                  </button> :
+                  <button className="bg-blue-500 px-5 py-3 mt-5 rounded hover:bg-blue-600 cursor-pointer"
+                    onClick={() => addMovie()}>
+                    Add to Watchlist
+                  </button>
+              }
+            </div>
+
+            <div className="h-65">
+              <img src={movie.posterUrl} className="rounded w-full" />
+            </div>
           </div>
+        </div> ) :
 
-          <div className="h-65">
-            <img src={movie.posterUrl} className="rounded w-full" />
-          </div>
-        </div>
-      </div>
+        <div className="absolute top-1/2 left-1/2 w-15 h-15 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+      }
     </>
   );
 }

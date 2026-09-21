@@ -38,13 +38,18 @@ function WatchlistPage() {
     <>
       <Navbar />
 
-      <div className="p-6">
-        <h1 className="text-2xl mb-4">My Watchlist</h1>
+      {
+        watchlistMovies.length !== 0 ? (
+          <div className="p-6">
+            <h1 className="text-2xl mb-4">My Watchlist</h1>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          {watchlistMovies.map((item) => <WatchlistItem key={item.id} entry={item} fetchWatchlist={fetchWatchlist} />)}
-        </div>
-      </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {watchlistMovies.map((item) => <WatchlistItem key={item.id} entry={item} fetchWatchlist={fetchWatchlist} />)}
+            </div>
+          </div>
+        ) :
+          <div className="absolute top-1/2 left-1/2 w-15 h-15 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+      }
     </>
   );
 }

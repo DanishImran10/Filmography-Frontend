@@ -14,6 +14,7 @@ export type SearchTileType = {
 function SearchBar() {
   const [searchText, setSearchText] = useState("");
   const [movies, setMovies] = useState<SearchTileType[]>([]);
+  const [isFetchingMovies, setIsFetchingMovies] = useState(false);
 
   const navigate = useNavigate();
 
@@ -30,6 +31,7 @@ function SearchBar() {
       async function fetchMoviesByQuery() {
         const response = await axios.get(`http://localhost:5000/api/movies/search?search=${searchText}`);
         setMovies(response.data);
+        setIsFetchingMovies(false);
       }
     }, 300);
 
@@ -39,7 +41,7 @@ function SearchBar() {
   function goToMoviesPage() {
     if (searchText === "")
       return;
-    
+
     setSearchText("");
     setMovies([]);
     navigate(`/movies?search=${searchText}`);
@@ -55,7 +57,10 @@ function SearchBar() {
           placeholder="Search movies..."
           className="w-full px-4 py-2 rounded-tl bg-gray-800 text-white border border-gray-700 focus:outline-none"
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={(e) => {
+            setIsFetchingMovies(true);
+            setSearchText(e.target.value)
+          }}
         />
 
         <button className="bg-blue-500 px-4 rounded-tr flex items-center justify-center hover:bg-blue-600 cursor-pointer"
@@ -64,7 +69,8 @@ function SearchBar() {
         </button>
       </div>
 
-      <SearchDropdown query={searchText} movies={movies} goToMoviesPage={goToMoviesPage} />
+      <SearchDropdown query={searchText} movies={movies} goToMoviesPage={goToMoviesPage}
+        isFetchingMovies={isFetchingMovies} />
     </div>
   );
 }

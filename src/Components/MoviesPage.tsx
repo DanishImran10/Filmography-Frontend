@@ -26,6 +26,7 @@ function MoviesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [totalPages, setTotalPages] = useState(1);
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [isFetchingMovies, setIsFetchingMovies] = useState(false);
 
   const page = Number(searchParams.get("page")) || 1;
   const limit = Number(searchParams.get("limit")) || 20;
@@ -33,6 +34,7 @@ function MoviesPage() {
 
   useEffect(() => {
     async function fetchMovies() {
+      setIsFetchingMovies(true);
       const response = await axios.get(
         `http://localhost:5000/api/movies?page=${page}&limit=${limit}&search=${searchQuery}`,
         {
@@ -41,6 +43,7 @@ function MoviesPage() {
       );
       setTotalPages(response.data.totalPages);
       setMovies(response.data.movies);
+      setIsFetchingMovies(false);
     }
 
     fetchMovies();
@@ -67,24 +70,31 @@ function MoviesPage() {
       <Navbar />
 
       <div className="p-6">
-        <div className="w-full flex justify-center mb-4">
+        <div className="w-full flex justify-center mb-2">
           <SearchBar />
         </div>
 
         {
-          movies.length !== 0 ? (
-            <>
-              <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
-                { movies.map((movie) => <MovieTile key={movie.id} movie={movie} />) }
-              </div>
+          isFetchingMovies ? 
+            <div className="absolute top-1/2 left-1/2 w-15 h-15 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+              :
+            movies.length === 0 ? 
+              <h1 className="px-6 py-10 text-3/4xl mb-4">
+                {`No movies found with: ${searchQuery}`}
+              </h1> : (
+              <>
+                <h2 className="text-2xl mb-4">Movies</h2>
 
-              <div className="mt-6 flex justify-center space-x-2">
-                <NavigatePageButton page={"Prev"} goToPage={goToPage} />
-                <NavigatePageButton page={"Next"} goToPage={goToPage} />
-              </div>
-            </>
-          ) :
-          <div className="absolute top-1/2 left-1/2 w-15 h-15 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+                <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+                  { movies.map((movie) => <MovieTile key={movie.id} movie={movie} />) }
+                </div>
+
+                <div className="mt-6 flex justify-center space-x-2">
+                  <NavigatePageButton page={"Prev"} goToPage={goToPage} />
+                  <NavigatePageButton page={"Next"} goToPage={goToPage} />
+                </div>
+              </>
+            )
         }
       </div>
     </>

@@ -47,7 +47,7 @@ function WatchlistPage() {
             :
           watchlistMovies.length === 0 ? 
             <h1 className="px-6 py-10 text-3/4xl mb-4">
-              No movies in the watchlist yet.
+              No movies in the watchlist
               <a href="/movies" className="ml-2 text-blue-500">Start Adding</a>
             </h1> :
 

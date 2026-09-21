@@ -83,7 +83,9 @@ function MoviesPage() {
                 {`No movies found with: ${searchQuery}`}
               </h1> : (
               <>
-                <h2 className="text-2xl mb-4">Movies</h2>
+                <h2 className="text-xl mb-4">
+                  {searchQuery === "" ? "Movies" : `Showing results for: ${searchQuery}`}
+                </h2>
 
                 <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
                   { movies.map((movie) => <MovieTile key={movie.id} movie={movie} />) }

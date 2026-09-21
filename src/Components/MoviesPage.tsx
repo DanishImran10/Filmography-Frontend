@@ -70,7 +70,7 @@ function MoviesPage() {
       <Navbar />
 
       <div className="p-6">
-        <div className="w-full flex justify-center mb-2">
+        <div className="w-full flex justify-center">
           <SearchBar />
         </div>
 
@@ -90,8 +90,8 @@ function MoviesPage() {
                 </div>
 
                 <div className="mt-6 flex justify-center space-x-2">
-                  <NavigatePageButton page={"Prev"} goToPage={goToPage} />
-                  <NavigatePageButton page={"Next"} goToPage={goToPage} />
+                  {page !== 1 && <NavigatePageButton page={"Prev"} goToPage={goToPage} />}
+                  {page !== totalPages && <NavigatePageButton page={"Next"} goToPage={goToPage} />}
                 </div>
               </>
             )

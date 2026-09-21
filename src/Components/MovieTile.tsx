@@ -24,7 +24,7 @@ function MovieTile(props: MovieTileProps) {
           <h3 className="text-lg font-semibold truncate">{props.movie.title}</h3>
           <p className="text-gray-400">{`${props.movie.year} • ${props.movie.imdbRating} IMDb • ${props.movie.runtime}`}</p>
           <p className="text-gray-400 truncate">{`Director: ${props.movie.director}`}</p>
-          <p className="text-gray-300 text-xs line-clamp-3">
+          <p className="text-gray-300 text-xs line-clamp-3 min-h-[3rem]">
             {props.movie.plot}
           </p>
         </div>

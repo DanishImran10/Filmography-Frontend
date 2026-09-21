@@ -26,7 +26,7 @@ function HomePage() {
       <Navbar />
       
       <div className="p-6">
-        <div className="w-full flex justify-center mb-2">
+        <div className="w-full flex justify-center">
           <SearchBar />
         </div>
       

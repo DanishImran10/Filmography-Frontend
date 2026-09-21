@@ -93,7 +93,7 @@ function LoginPage() {
         <p className="text-sm text-gray-400 mt-2 text-center">
           Don't have an account?
           <a href="/signup" className="text-blue-400 ml-1 hover:underline">
-            Sign Up
+            Register
           </a>
         </p>
       </form>

@@ -52,7 +52,7 @@ function SignUpPage() {
   return (
     <div className="flex items-center justify-center h-screen">
       <form className="bg-gray-800 p-6 rounded w-80">
-        <h2 className="text-white text-xl mb-6">Sign Up</h2>
+        <h2 className="text-white text-xl mb-6">Register</h2>
 
         <input
           type="name"

@@ -24,11 +24,11 @@ function WatchlistItem(props: WatchlistItemProps) {
         <p className="text-gray-400">
           {`${props.entry.movie.year} • ${props.entry.movie.imdbRating} • ${props.entry.movie.runtime}`}
         </p>
-        <p className="text-gray-400">{`Director: ${props.entry.movie.director}`}</p>
+        <p className="text-gray-400 truncate">{`Director: ${props.entry.movie.director}`}</p>
 
         <div className="flex gap-2 mt-3">
           <button
-            className="flex-1 bg-green-500 py-2 rounded hover:bg-green-600 text-sm"
+            className="flex-1 bg-green-500 py-2 rounded hover:bg-green-600 text-sm cursor-pointer"
             onClick={() => {
               removeMovie();
               props.fetchWatchlist();
@@ -38,7 +38,7 @@ function WatchlistItem(props: WatchlistItemProps) {
           </button>
 
           <button
-            className="flex-1 bg-red-500 py-2 rounded hover:bg-red-600 text-sm"
+            className="flex-1 bg-red-500 py-2 rounded hover:bg-red-600 text-sm cursor-pointer"
             onClick={() => {
               removeMovie();
               props.fetchWatchlist();

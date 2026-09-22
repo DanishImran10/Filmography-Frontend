@@ -51,72 +51,103 @@ function SignUpPage() {
   }
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <form className="bg-gray-800 p-6 rounded w-80">
-        <h2 className="text-white text-xl mb-6">Register</h2>
-
-        <input
-          type="name"
-          placeholder="Name"
-          className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={userCredentials.name}
-          onChange={(e) => {
-            setUserCredentials((prev) => {
-              return {
-                ...prev,
-                name: e.target.value
-              }
-            });
-            }
-          }
+    <div className="min-h-screen relative flex items-center justify-center bg-gray-900 text-white">
+  
+      {/* <!-- Background Image --> */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/background.jpg"
+          className="w-full h-full object-cover opacity-80"
         />
+        <div className="absolute inset-0 bg-black/60"></div>
+      </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={userCredentials.email}
-          onChange={(e) => {
-            setUserCredentials((prev) => {
-              return {
-                ...prev,
-                email: e.target.value
+      {/* <!-- Main Container --> */}
+      <div className="relative w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 px-6 items-start">
+    
+        {/* LEFT SIDE: Branding */}
+        <div className="flex flex-col justify-center space-y-4 mt-8 w-100">
+
+          <div className="">
+            <img src="/images/logo.png" className="w-70" />
+          </div>
+
+          <p className="text-gray-300 text-lg">
+            Track your favorite movies, build your watchlist and never lose what you want to watch.
+          </p>
+        </div>
+
+        <div className="bg-gray-900/70 backdrop-blur-md border border-gray-700 rounded-xl p-8 shadow-xl w-100">
+          <h2 className="text-2xl font-semibold mb-6">
+            Register
+          </h2>
+
+          <form className="space-y-4">
+
+            <input
+              type="name"
+              placeholder="Name"
+              className="w-full px-4 py-3 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={userCredentials.name}
+              onChange={(e) => {
+                setUserCredentials((prev) => {
+                  return {
+                    ...prev,
+                    name: e.target.value
+                  }
+                });
+                }
               }
-            });
-            }
-          }
-        />
+            />
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full mb-3 p-2 rounded bg-gray-700 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={userCredentials.password}
-          onChange={(e) => {
-            setUserCredentials((prev) => {
-              return {
-                ...prev,
-                password: e.target.value
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full px-4 py-3 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={userCredentials.email}
+              onChange={(e) => {
+                setUserCredentials((prev) => {
+                  return {
+                    ...prev,
+                    email: e.target.value
+                  }
+                });
+                }
               }
-            });
-            }
-          }
-        />
+            />
 
-        <button className="bg-green-500 w-full mt-2 py-2 rounded text-white hover:bg-green-600 cursor-pointer"
-          onClick={(e) => handleSubmission(e)}>
-          Create Account
-        </button>
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full px-4 py-3 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={userCredentials.password}
+              onChange={(e) => {
+                setUserCredentials((prev) => {
+                  return {
+                    ...prev,
+                    password: e.target.value
+                  }
+                });
+                }
+              }
+            />
 
-        <p className="text-sm text-red-400 mt-4 text-center">
-            {errorResponse !== "" && errorResponse}
-        </p>
+            <button className="w-full bg-blue-500 py-3 rounded hover:bg-blue-600 font-medium"
+              onClick={(e) => handleSubmission(e)}>
+              Create Account
+            </button>
 
-        <p className="text-sm text-gray-400 mt-2 text-center">
-            Already have an account?
-            <a href="/login" className="text-blue-400 ml-1 hover:underline">Login</a>
-        </p>
-      </form>
+            <p className="text text-red-400 text-center">
+                {errorResponse !== "" && errorResponse}
+            </p>
+
+            <p className="text text-gray-400 text-center -mt-4">
+                Already have an account?
+                <a href="/login" className="text-blue-400 ml-1 hover:underline">Login</a>
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

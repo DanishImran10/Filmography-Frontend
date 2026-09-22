@@ -2,6 +2,7 @@ import SearchDropdown from "./SearchDropdown";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import BASE_URL from "../BaseUrl";
 
 export type SearchTileType = {
   id: string,
@@ -29,7 +30,7 @@ function SearchBar() {
       fetchMoviesByQuery();
 
       async function fetchMoviesByQuery() {
-        const response = await axios.get(`http://localhost:5000/api/movies/search?search=${searchText}`);
+        const response = await axios.get(`${BASE_URL}/api/movies/search?search=${searchText}`);
         setMovies(response.data);
         setIsFetchingMovies(false);
       }

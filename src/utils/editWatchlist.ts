@@ -2,6 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../Components/AuthContext";
+import BASE_URL from "../BaseUrl";
 
 export function useAddToWatchlist(movieId: string, callback: React.Dispatch<React.SetStateAction<boolean>>) {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export function useAddToWatchlist(movieId: string, callback: React.Dispatch<Reac
     callback(true);
 
     try {
-      await axios.post("http://localhost:5000/api/watchlist", {
+      await axios.post(`${BASE_URL}/api/watchlist`, {
         movieId
       }, {
         withCredentials: true
@@ -42,7 +43,7 @@ export function useRemoveFromWatchlist(movieId: string, callback: React.Dispatch
       callback(false);
 
       try {
-        await axios.delete(`http://localhost:5000/api/watchlist/${movieId}`, {
+        await axios.delete(`${BASE_URL}/api/watchlist/${movieId}`, {
           withCredentials: true
         });
       }

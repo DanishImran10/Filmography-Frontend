@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
+import BASE_URL from "../BaseUrl";
 
 function Navbar() {
   const { user, setUser } = useContext(AuthContext);
@@ -9,7 +10,7 @@ function Navbar() {
 
   async function logoutClicked() {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/logout",
+      `${BASE_URL}/api/auth/logout`,
       {},
       {
         withCredentials: true,

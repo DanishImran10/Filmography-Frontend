@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router";
 import axios from "axios";
 import NavigatePageButton from "./NavigatePageButton";
 import SearchBar from "./SearchBar";
+import BASE_URL from "../BaseUrl";
 
 export type Movie = {
   id: string,
@@ -36,7 +37,7 @@ function MoviesPage() {
     async function fetchMovies() {
       setIsFetchingMovies(true);
       const response = await axios.get(
-        `http://localhost:5000/api/movies?page=${page}&limit=${limit}&search=${searchQuery}`,
+        `${BASE_URL}/api/movies?page=${page}&limit=${limit}&search=${searchQuery}`,
         {
           withCredentials: true,
         },

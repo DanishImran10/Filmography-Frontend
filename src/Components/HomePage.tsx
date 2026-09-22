@@ -3,6 +3,7 @@ import MoviePoster from "./MoviePoster";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SearchBar from "./SearchBar";
+import BASE_URL from "../BaseUrl";
 
 export type Poster = {
   id: string,
@@ -14,7 +15,7 @@ function HomePage() {
 
   useEffect(() => {
     async function getTrendingMovies() {
-      const response = await axios.get("http://localhost:5000/api/movies/trending");
+      const response = await axios.get(`${BASE_URL}/api/movies/trending`);
       setTrending(response.data);
     }
 

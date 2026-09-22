@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import WatchlistItem from "./WatchlistItem";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BASE_URL from "../BaseUrl";
 
 export type WatchlistMovie = {
   id: string,
@@ -21,7 +22,7 @@ function WatchlistPage() {
   const [fetchingWatchlist, setFetchingWatchlist] = useState(false);
 
   async function fetchWatchlist() {
-      const response = await axios.get("http://localhost:5000/api/watchlist", {
+      const response = await axios.get(`${BASE_URL}/api/watchlist`, {
         withCredentials: true
       });
       setWatchlistMovies(response.data);

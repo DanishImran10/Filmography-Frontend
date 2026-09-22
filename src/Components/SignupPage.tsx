@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import getAuth from "../utils/getAuth";
 import { AuthContext } from "./AuthContext";
+import BASE_URL from "../BaseUrl";
 
 type SignUp = {
   name: string,
@@ -34,7 +35,7 @@ function SignUpPage() {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/auth/register", userCredentials, {
+      await axios.post(`${BASE_URL}/api/auth/register`, userCredentials, {
         withCredentials: true
       });
     }

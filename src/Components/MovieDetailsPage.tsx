@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import type { Movie } from "./MoviesPage";
 import axios from "axios";
 import { useAddToWatchlist, useRemoveFromWatchlist } from "../utils/editWatchlist";
+import BASE_URL from "../BaseUrl";
 
 function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -17,7 +18,7 @@ function MovieDetailsPage() {
 
   useEffect(() => {
     async function getMovieDetails() {
-      const response = await axios.get(`http://localhost:5000/api/movies/${movieId}`, {
+      const response = await axios.get(`${BASE_URL}/api/movies/${movieId}`, {
         withCredentials: true
       });
       setMovie(response.data);

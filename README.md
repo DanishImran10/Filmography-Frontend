@@ -10,13 +10,15 @@ A modern and responsive movie watchlist web application built using **React, Typ
   - Fetches paginated movie data from a backend API using `axios`.
   - Displays movies dynamically using reusable React components.
 
-<img src="https://github.com/USERNAME/REPO/blob/BRANCH/images/homepage.jpg" alt="Homepage" width="500">
+<img src="https://github.com/DanishImran10/Filmography-Frontend/blob/main/images/homepage.PNG" alt="Homepage" width="500">
 
 ---
 
 * **Watchlist Management**
   - Add/remove movies from a personal watchlist.
   - Global synchronization of watchlist state across pages.
+
+<img src="https://github.com/DanishImran10/Filmography-Frontend/blob/main/images/watchlist.PNG" alt="Watchlist" width="500">
 
 ---
 
@@ -25,7 +27,7 @@ A modern and responsive movie watchlist web application built using **React, Typ
   - Displays top results in an interactive dropdown.
   - “Show all results” redirects to full results page.
 
-<img src="https://github.com/USERNAME/REPO/blob/BRANCH/images/search.jpg" alt="Search Feature" width="500">
+<img src="https://github.com/DanishImran10/Filmography-Frontend/blob/main/images/search.PNG" alt="Search Feature" width="500">
 
 ---
 
@@ -33,6 +35,8 @@ A modern and responsive movie watchlist web application built using **React, Typ
   - JWT-based authentication using HTTP-only cookies.
   - Global authentication state handled via Context API.
   - Protected routes for authenticated users.
+ 
+<img src="https://github.com/DanishImran10/Filmography-Frontend/blob/main/images/login.PNG" alt="Login Page" width="500">
 
 ---
 
@@ -58,6 +62,8 @@ A modern and responsive movie watchlist web application built using **React, Typ
   - Built with Tailwind CSS.
   - Mobile-first responsive grid layout.
   - Clean card-based movie UI.
+
+<img src="https://github.com/DanishImran10/Filmography-Frontend/blob/main/images/movieDetails.PNG" alt="MovieDetails Page" width="500">
 
 ---
 

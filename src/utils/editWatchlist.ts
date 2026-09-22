@@ -11,7 +11,10 @@ export function useAddToWatchlist(movieId: string, callback: React.Dispatch<Reac
 
   async function addToWatchlist() {
     if (!user)
+    {
       navigate("/login");
+      return;
+    }
 
     callback(true);
 
@@ -38,7 +41,10 @@ export function useRemoveFromWatchlist(movieId: string, callback: React.Dispatch
 
     async function removeFromWatchlist() {
       if (!user)
+      {
         navigate("/login");
+        return;
+      }
 
       callback(false);
 

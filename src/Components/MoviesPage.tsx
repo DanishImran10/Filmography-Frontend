@@ -85,7 +85,7 @@ function MoviesPage() {
               </h1> : (
               <>
                 <h2 className="text-xl mb-4">
-                  {searchQuery === "" ? "Movies" : `Showing results for: ${searchQuery}`}
+                  {searchQuery === "null" ? "Movies" : `Showing results for: ${searchQuery}`}
                 </h2>
 
                 <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
